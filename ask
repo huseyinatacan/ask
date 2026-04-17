@@ -18,6 +18,4 @@ answer=$(curl https://api.openai.com/v1/responses -s \
 	]
 }')
 
-echo $answer | sed -e 's/,/\n/g' | sed -n '/"text": "/,/} ]/p' | sed -e 's/"text": "//' -e's/" } ]//' | awk 'BEGIN {ORS=","} {print $0}' | sed -e 's/\\n/\n/g'
-
-echo -e "\n"
+echo $answer | egrep -o '"text": ".*" } ]' |  sed -e 's/"text": "//' -e  's/" } ].*//' -e 's/\\n/\n/g'
