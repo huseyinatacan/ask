@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo $ASK_API_KEY
 
 answer=$(curl https://api.openai.com/v1/responses -s \
 	-H "Content-Type: application/json" \
@@ -14,9 +13,11 @@ answer=$(curl https://api.openai.com/v1/responses -s \
 		},
 		{
 			"role": "user",
-			"content": "Explain the importance of fast language models"
+			"content": "'"$*"'"
 		}
 	]
 }')
 
-echo $answer
+echo $answer | sed -e 's/,/\n/g' | sed -n '/"text": "/,/} ]/p' | sed -e 's/"text": "//' -e's/" } ]//' | awk 'BEGIN {ORS=","} {print $0}' | sed -e 's/\\n/\n/g'
+
+echo -e "\n"
