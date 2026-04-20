@@ -34,4 +34,4 @@ answer=$(curl "$ASK_API_URL" -s \
   }"
 )
 
-echo $answer | jq '.output.[].content.[].text' | sed -e 's/"//g' -e 's/\\n/\n/g'
+echo "$answer" | jq -r '(.output[]?.content[]?.text) // .error.message'
