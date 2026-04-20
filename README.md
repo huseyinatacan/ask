@@ -12,7 +12,6 @@ A minimal Bash CLI tool for asking questions to AI directly from your terminal.
 - `bash`
 - `curl`
 - `jq`
-- `sed`
 
 ## Installation
 1. Save the script as `ask`
@@ -58,8 +57,8 @@ Rhythm
 ```
 
 ## Limitations
-- The `jq`/`sed` output parsing may need to be adjusted if the API response format differs
-- Response will not be correctly parsed if you get an error response from the API
+- The `jq` output parsing may need to be adjusted if the API response format differs
+- Response may not be correctly parsed if you get an error response from the API
 - Some models may require the input to be formatted as a `messages` array instead of `input` — update the request body accordingly
 
 ## Contributing
