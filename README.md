@@ -46,7 +46,7 @@ ask what is the best turkish food give me just one
 **Pipe:**
 ```bash
 cat ask | ask what does this script do
-It's a Bash wrapper that sends your prompt to an AI API and prints the text reply.
+It\'s a Bash wrapper that sends your prompt to an AI API and prints the text reply.
 ```
 
 **Alias support:**
