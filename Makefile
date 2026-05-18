@@ -21,9 +21,10 @@ security.sum.md: security.md
 
 concatenated.md : quality.sum.md perf.sum.md security.sum.md
 	( echo "## Code Quality" && cat quality.sum.md  && echo "## Performance" && cat perf.sum.md  && echo "## Security" && cat security.sum.md )  > concatenated.md
-refined.md: concatenated.md
-	cat concatenated.md | ask "Analyze the input for quality, performance, and security; for each category, provide exactly 5 high-signal, actionable bullets in 'Problem → Solution' format, consolidated into a single markdown response with category headers." > refined.md
 
+refined.md: concatenated.md
+	cat concatenated.md | ask "Analyze the input for quality, performance, and security. Organize the response under the headings Code Quality, Performance, and Security. Remove duplicate or overlapping issues, keep only high-signal issues, and write each item in 'Problem -> Solution' format. The result should be a concise markdown response." > refined.md
+	
 action.plan.md: refined.md
 	cat refined.md | ask "Using the input categories, generate an 'Engineering Action Plan' that lists every task with a priority High/Medium/Low, an effort estimate Small/Medium/Large, and a sequential execution order, grouped into logical implementation phases." > action.plan.md
 
